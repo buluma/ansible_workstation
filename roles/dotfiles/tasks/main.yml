@@ -1,0 +1,59 @@
+---
+# tasks file for dotfiles
+
+- name: install git
+  package:
+    name: git
+    state: present
+  become: yes
+
+- name: install antigen
+  get_url:
+    url: http://git.io/antigen
+    dest: "$HOME/antigen.zsh"
+  become: no
+
+- name: download spacevim installer
+  get_url:
+    url: https://spacevim.org/install.sh
+    dest: /tmp/install-spacevim.sh
+    mode: '0777'
+  become: no
+
+- name: install spacevim
+  command: /tmp/install-spacevim.sh
+  args:
+    creates: ~/.SpaceVim
+  become: no
+
+- name: checkout spacemacs
+  git:
+    repo: https://github.com/syl20bnr/spacemacs
+    dest: "~/.emacs.d"
+    version: "{{ spacemacs_version }}"
+    update: yes
+  become: no
+
+- name: checkout dotfiles git repo
+  git:
+    version: "{{ dotfiles_repo_version }}"
+    repo: "{{ dotfiles_repo }}"
+    dest: "{{ dotfiles_path }}"
+    update: yes
+  become: no
+
+- name: link dotfiles
+  file:
+    src: "{{ dotfiles_path }}/{{ item }}"
+    dest: "~/{{ item }}"
+    state: link
+  become: no
+  with_items: "{{ dotfiles_files }}"
+
+- name: copy dotfiles.local
+  copy:
+    src: "{{ dotfiles_path }}/{{ item }}"
+    dest: "~/{{ item }}"
+    backup: yes
+  become: no
+  with_items: "{{ dotfiles_copy }}"

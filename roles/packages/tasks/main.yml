@@ -1,0 +1,118 @@
+---
+# tasks file for packages
+- name: assert supported distributions and versions
+  assert:
+    that:
+      - ( ansible_distribution == "RedHat" and ( ansible_distribution_major_version == '8' )
+        ) or
+        ( ansible_distribution == "CentOS" and ( ansible_distribution_major_version == "7" )
+        ) or
+        ( ansible_distribution == "Fedora" and ( ansible_distribution_major_version == "30" )
+        ) or
+        ( ansible_distribution == "Debian" and ( ansible_distribution_major_version == "9" or ansible_distribution_major_version == "10" )
+        ) or
+        ( ansible_distribution == "Ubuntu" and ( ansible_distribution_version == "18.04" )
+        )
+
+- name: install prereq packages
+  package:
+    name: "{{ packages_prereq }}"
+    state: present
+  become: yes
+  when: install_prereq
+
+- name: install the rpmfusion repo
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+    - http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
+  when:
+    - install_rpmfusion
+    - ansible_distribution == "Fedora"
+
+- name: install base packages
+  package:
+    name: "{{ packages_base }}"
+    state: present
+  become: yes
+  when: install_base
+
+- name: install tools packages
+  package:
+    name: "{{ packages_tools }}"
+    state: present
+  become: yes
+  when: install_tools
+
+- name: install net packages
+  package:
+    name: "{{ packages_net }}"
+    state: present
+  become: yes
+  when: install_net
+
+- name: install build packages
+  package:
+    name: "{{ packages_build }}"
+    state: present
+  become: yes
+  when: install_build
+
+- name: install clients packages
+  package:
+    name: "{{ packages_clients }}"
+    state: present
+  become: yes
+  when: install_clients
+
+- name: install devel packages
+  package:
+    name: "{{ packages_devel }}"
+    state: present
+  become: yes
+  when: install_devel
+
+- name: install gui packages
+  package:
+    name: "{{ packages_gui }}"
+    state: present
+  become: yes
+  when: install_gui
+
+- name: install desktop packages
+  package:
+    name: "{{ packages_desktop }}"
+    state: present
+  become: yes
+  when: install_desktop
+
+- name: install latex packages
+  package:
+    name: "{{ packages_latex }}"
+    state: present
+  become: yes
+  when: install_latex
+
+- name: remove packages
+  package:
+    name: "{{ packages_remove }}"
+    state: absent
+  become: yes
+  when: uninstall_packages
+
+- name: install google packages
+  package:
+    name: "{{ packages_google }}"
+    state: present
+    enablerepo: google-chrome
+  become: yes
+  when: install_google
+
+- name: update packages
+  package:
+    name: '*'
+    state: latest           # noqa 403
+  become: yes
+  when: update_packages

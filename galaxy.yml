@@ -1,0 +1,24 @@
+---
+namespace: "buluma"
+name: "workstation"
+version: "1.0.17"
+readme: "README.md"
+authors:
+  - "Michael Buluma (https://github.com/buluma)"
+description: "Collection of Workstation Tools"
+license:
+  - "MIT"
+tags:
+  - linux
+  - workstation
+  - baseline
+  - profile
+  - dotfiles
+  - micro
+  - pip
+  - development
+  - collection
+repository: "https://www.github.com/buluma/ansible_workstation"
+homepage: "https://www.github.com/buluma/ansible_workstation"
+documentation: "https://www.github.com/buluma/ansible_workstation"
+issues: "https://www.github.com/buluma/ansible_workstation/issues"

@@ -1,0 +1,315 @@
+---
+# vars file for packages
+
+# Remove packages: uninstall if found
+_packages_remove:
+  all:
+    - screen
+  CentOS:
+    - abrt
+  Fedora:
+    - abrt
+    - fedora-chromium-config.noarch
+  RedHat:
+    - abrt
+
+# Prereq packages: they get installed first, so put things like epel-release here
+_packages_prereq:
+  all:
+    - sudo
+    - bash
+    - tar
+    - unzip
+    - bzip2
+  CentOS:
+    - epel-release
+  Fedora:
+    - fedora-workstation-repositories
+
+# Base packages
+_packages_base:
+  all:
+    - bash-completion
+    - zsh
+    - ed
+    - vim
+    - neovim
+    - mc
+    - aspell-en
+    - tmux
+    - bc
+    - less
+    - autofs
+  CentOS:
+    - which
+    - xz
+    - tuned
+    - lvm2
+    - vdo
+    - kmod-kvdo
+    - tuned
+  RedHat:
+    - xz
+    - tuned
+    - lvm2
+    - vdo
+    - kmod-kvdo
+    - stratisd
+    - stratis-cli
+    - tuned
+  Fedora:
+    - xz
+    - tuned
+    - lvm2
+    - tuned
+  Debian:
+    - xz-utils
+    - apt-file
+    - debianutils
+    - command-not-found
+  Ubuntu:
+    - xz-utils
+    - apt-file
+    - debianutils
+    - command-not-found
+
+# Packages tools
+_packages_tools:
+  all:
+    - lsof
+    - sysstat
+    - htop
+    - strace
+    - iotop
+    - mosh
+    - lynis
+    - testdisk
+    - inotify-tools
+  CentOS:
+    - openscap
+    - openscap-scanner
+    - scap-security-guide
+  RedHat:
+    - openscap
+    - openscap-scanner
+    - scap-security-guide
+  Debian:
+    - ssg-debian
+  Ubuntu:
+    - ssg-debderived
+
+# Net tools packages
+_packages_net:
+  all:
+    - curl
+    - wget
+    - traceroute
+    - net-tools
+    - tcpdump
+    - nethogs
+    - irssi
+  CentOS:
+    - bind-utils
+    - nmap-ncat
+    - NetworkManager-tui
+  RedHat:
+    - bind-utils
+    - nmap-ncat
+    - NetworkManager-tui
+  Fedora:
+    - bind-utils
+    - nmap-ncat
+    - NetworkManager-tui
+  Debian:
+    - dnsutils
+    - ncat
+  Ubuntu:
+    - dnsutils
+    - ncat
+
+# Build packages
+_packages_build:
+  all:
+    - git
+  CentOS:
+    - python36-devel
+    - openssl-devel
+    - elfutils-libelf-devel
+    - ncurses-libs
+    - ncurses-devel
+    - flex
+    - bison
+    - bc
+    - kernel-headers
+    - kernel-devel
+    - gcc
+    - binutils
+    - perl
+    - make
+    - dialog
+    - kexec-tools
+  RedHat:
+    - openssl-devel
+    - elfutils-libelf-devel
+    - ncurses-libs
+    - ncurses-devel
+    - flex
+    - bison
+    - bc
+    - kernel-headers
+    - kernel-devel
+    - gcc
+    - binutils
+    - perl
+    - make
+    - dialog
+    - kexec-tools
+  Fedora:
+    - openssl-devel
+    - elfutils-libelf-devel
+    - ncurses-libs
+    - ncurses-devel
+    - flex
+    - bison
+    - bc
+    - kernel-headers
+    - kernel-devel
+    - gcc
+    - binutils
+    - perl
+    - make
+    - dialog
+    - kexec-tools
+  Debian:
+    - build-essential
+  Ubuntu:
+    - build-essential
+
+# Clients packages
+_packages_clients:
+  all:
+    - rsync
+    - cifs-utils
+    - samba-client
+    - openldap-clients
+    - nfs-utils
+    - openssh-clients
+  CentOS:
+    - openldap-clients
+  RedHat:
+    - openldap-clients
+  Fedora:
+    - openldap-clients
+  Debian:
+    - ldap-utils
+  Ubuntu:
+    - ldap-utils
+
+# Devel packages
+_packages_devel:
+  all:
+    - npm
+    - nodejs
+    - cargo
+    - ruby
+    - cloc
+  CentOS:
+    - java-11-openjdk
+    - rust
+    - go
+    - rpm-build
+    - rpmdevtools
+  RedHat:
+    - java-11-openjdk
+    - rust
+    - go
+    - rpm-build
+    - rpmdevtools
+  Fedora:
+    - java-11-openjdk
+    - rust
+    - go
+    - rpm-build
+    - rpmdevtools
+  Debian:
+    - openjdk-11-jdk
+    - rustc
+    - golang
+  Ubuntu:
+    - openjdk-11-jdk
+    - rustc
+    - golang
+
+# GUI packages
+_packages_gui:
+  all:
+    - wireshark
+  CentOS:
+    - "@^graphical-server-environment"
+    - firewall-config
+    - "system-config-*"
+  RedHat:
+    - "@^graphical-server-environment"
+    - firewall-config
+  Fedora:
+    - "@workstation-product-environment"
+    - firewall-config
+    - firefox
+    - keepassx
+    - remmina
+    - mediawriter
+    - dconf-editor
+    - ghostwriter
+    - calibre
+  Debian:
+    - task-gnome-desktop
+    - firefox-esr
+  Ubuntu:
+    - unity
+    - firefox-esr
+
+# Desktop packages (specific to desktop environments)
+_packages_desktop:
+  all:
+    - figlet
+  Fedora:
+    - lm_sensors
+    - wine-fonts
+    - powerline-fonts
+    - flameshot
+    - transmission
+    - pinta
+    - mpv
+    - libldac
+
+# LaTeX packages
+_packages_latex:
+  all:
+    - texlive
+    - texlive-xetex
+  CentOS:
+    - texlive-euenc
+  Fedora:
+    - texlive-beamertheme-metropolis
+    - texmaker
+    - texlive-frame
+
+# Google packages
+_packages_google:
+  all:
+    - google-chrome-stable
+  Fedora:
+    - google-chrome-stable
+
+packages_remove: "{{ _packages_remove['all'] + ( _packages_remove[ansible_distribution] | default([]) ) }}"
+packages_prereq: "{{ _packages_prereq['all'] + ( _packages_prereq[ansible_distribution] | default([]) ) }}"
+packages_base: "{{ _packages_base['all'] + ( _packages_base[ansible_distribution] | default([]) ) }}"
+packages_net: "{{ _packages_net['all'] + ( _packages_net[ansible_distribution] | default([]) ) }}"
+packages_tools: "{{ _packages_tools['all'] + ( _packages_tools[ansible_distribution] | default([]) ) }}"
+packages_build: "{{ _packages_build['all'] + ( _packages_build[ansible_distribution] | default([]) ) }}"
+packages_clients: "{{ _packages_clients['all'] + ( _packages_clients[ansible_distribution] | default([]) ) }}"
+packages_devel: "{{ _packages_devel['all'] + ( _packages_devel[ansible_distribution] | default([]) ) }}"
+packages_gui: "{{ _packages_gui['all'] + ( _packages_gui[ansible_distribution] | default([]) ) }}"
+packages_desktop: "{{ _packages_desktop['all'] + ( _packages_desktop[ansible_distribution] | default([]) ) }}"
+packages_latex: "{{ _packages_latex['all'] + ( _packages_latex[ansible_distribution] | default([]) ) }}"
+packages_google: "{{ _packages_google['all'] + ( _packages_google[ansible_distribution] | default([]) ) }}"

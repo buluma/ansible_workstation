@@ -1,0 +1,9 @@
+---
+# tasks file for pip
+
+- name: install pip modules
+  pip:
+    executable: pip
+    name: "{{ pip_packages }}"
+    extra_args: --user --upgrade
+  become: no
