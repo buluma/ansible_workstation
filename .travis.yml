@@ -8,7 +8,7 @@ cache:
 
 install:
   - pip install --upgrade pip
-  - pip install ansible ansbile-lint yamllint mazer molecule docker
+  - pip install ansible ansible-lint yamllint mazer molecule docker
 
 script:
   - ansible-lint roles/*
