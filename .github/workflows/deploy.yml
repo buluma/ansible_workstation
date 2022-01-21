@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: run test
-      run: ansible-test integration --docker centos8 -v
+      run: ansible-galaxy collection install buluma.workstation
 
     - name: Deploy the collection
       uses: artis3n/ansible_galaxy_collection@v2
