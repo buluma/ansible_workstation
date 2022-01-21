@@ -1,0 +1,7 @@
+- name: setup a workstation environment
+  hosts: all
+  connection: local
+  become: yes
+  gather_facts: yes
+  roles:
+    - role: buluma.workstation.dotfiles
