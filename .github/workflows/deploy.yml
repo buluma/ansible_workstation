@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: run test
-      run: ansible-test sanity --docker default -v
+      run: ansible-test integration --docker centos8 -v
 
     - name: Deploy the collection
       uses: artis3n/ansible_galaxy_collection@v2
